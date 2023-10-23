@@ -1,0 +1,6 @@
+*.o
+physics01
+
+# clangd, ccls
+compile_commands.json
+.cache

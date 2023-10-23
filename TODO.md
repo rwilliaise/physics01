@@ -1,0 +1,42 @@
+
+- [ ] physics01
+    - [ ] basics
+        - [ ] multithreading?
+        - [ ] res.h
+            - [ ] `load_from_file`
+        - [ ] math
+            - [x] mat3
+                - [x] multiply
+                - [x] affine translate
+                - [x] affine rotate
+                - [ ] affine scale
+            - [ ] vec2
+            - [ ] aabb
+    - [ ] rendering
+        - [x] basics
+        - [x] shaders
+            - [x] load from file
+            - [x] compile vertex and fragment
+            - [x] attach and link
+            - [x] cleanup
+        - [ ] objects
+            - [ ] vao
+            - [ ] upload to shader
+                - [ ] position
+                - [ ] scale
+                - [ ] rotation
+            - [ ] geo generation
+                - [ ] one vao per prim
+            - [ ] physics interpolation
+    - [ ] physics
+        - [ ] basics
+        - [ ] kinematics
+            - [ ] substepping
+        - [ ] collision
+            - [ ] box
+                - [ ] broadphase
+                - [ ] narrowphase
+            - [ ] circle
+                - [ ] broadphase
+                - [ ] narrowphase
+        - [ ] display
