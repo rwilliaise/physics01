@@ -2,6 +2,7 @@
 #include "mathlib.h"
 
 #include <math.h>
+#include <string.h>
 
 void mat3_mul_mat3(mat3_t lhs, mat3_t rhs, mat3_t dest) {
     float a00 = lhs[0][0], a01 = lhs[0][1], a02 = lhs[0][2],
@@ -63,9 +64,39 @@ void mat3_scale(mat3_t dest, vec2_t scale) {
     dest[1][2] = dest[1][2] * scale[1];
 }
 
+void mat3_scales(mat3_t dest, float scale) {
+    dest[0][0] = dest[0][0] * scale;
+    dest[0][1] = dest[0][1] * scale;
+    dest[0][2] = dest[0][2] * scale;
+
+    dest[1][0] = dest[1][0] * scale;
+    dest[1][1] = dest[1][1] * scale;
+    dest[1][2] = dest[1][2] * scale;
+}
+
+void mat4_copy(mat4_t dest, mat4_t src) {
+    memcpy(dest, src, sizeof(mat4_t));
+}
+
+void mat4_ortho(mat4_t dest, float b, float t, float l, float r, float n, float f) {
+    mat4_copy(dest, MAT4_IDENTITY);
+    dest[0][0] = 2 / (r - l);
+    dest[1][1] = 2 / (t - b);
+    dest[2][2] = -2 / (f - n);
+    dest[3][0] = -(r + l) / (r - l);
+    dest[3][0] = -(t + b) / (t - b);
+    dest[3][0] = -(f + n) / (f - n);
+}
+
 void vec2_copy(vec2_t dest, vec2_t src) {
     dest[0] = src[0];
     dest[1] = src[1];
+}
+
+void vec2_sub(vec2_t lhs, vec2_t rhs, vec2_t dest) {
+    dest[0] = lhs[0] - rhs[0];
+    dest[1] = lhs[1] - rhs[1];
+    dest[2] = lhs[2] - rhs[2];
 }
 
 void vec3_copy(vec3_t dest, vec3_t src) {
