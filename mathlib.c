@@ -1,7 +1,9 @@
 
 #include "mathlib.h"
+#include "physics01.h"
 
 #include <math.h>
+#include <stdio.h>
 #include <string.h>
 
 void mat3_mul_mat3(mat3_t lhs, mat3_t rhs, mat3_t dest) {
@@ -84,8 +86,18 @@ void mat4_ortho(mat4_t dest, float b, float t, float l, float r, float n, float 
     dest[1][1] = 2 / (t - b);
     dest[2][2] = -2 / (f - n);
     dest[3][0] = -(r + l) / (r - l);
-    dest[3][0] = -(t + b) / (t - b);
-    dest[3][0] = -(f + n) / (f - n);
+    dest[3][1] = -(t + b) / (t - b);
+    dest[3][2] = -(f + n) / (f - n);
+}
+
+void mat4_ortho_unit(mat4_t dest, float aspect) {
+    if (aspect >= 1.0f) {
+        mat4_ortho(dest, -aspect, aspect, -1, 1, -100, 100);
+        _debug_mat4(dest);
+        return;
+    }
+    aspect = 1.0f / aspect;
+    mat4_ortho(dest, -1, 1, -aspect, aspect, -100, 100);
 }
 
 void vec2_copy(vec2_t dest, vec2_t src) {

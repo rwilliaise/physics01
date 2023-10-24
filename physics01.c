@@ -18,7 +18,8 @@ void r_glfw_error(int code, const char *desc) {
 }
 
 void r_glfw_resize(GLFWwindow *win, int w, int h) {
-
+    r_context_t *ctx = (r_context_t *) glfwGetWindowUserPointer(win);
+    r_camera_update_ortho(&ctx->cam, ctx->def, (float) w / h);
     glViewport(0, 0, w, h);
 }
 
@@ -78,6 +79,7 @@ int main(int argc, char *argv[]) {
         }
     };
     glfwSetWindowUserPointer(window, &ctx);
+    r_camera_update_ortho(&ctx.cam, default_shader, 640.0f / 480.0f);
     r_camera_upload(&ctx.cam, default_shader);
 
     object_t *box = object_new(OBJECT_TYPE_BOX);
